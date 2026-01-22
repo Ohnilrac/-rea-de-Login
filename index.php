@@ -1,3 +1,13 @@
+<?php 
+session_start();
+require_once("config/db.php");
+
+if(isset($_SESSION['id'])){
+  header("Location: dashboard.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,7 +31,32 @@
   </div>
 
   <main>
-    <form action="actions/login_action.php" method="post">
+    <?php 
+    
+      if(isset($_POST['email']) && isset($_POST['senha'])){
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $sql = "SELECT * FROM contas WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+          'email' => $email
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($usuario && password_verify($senha, $usuario['senha'])){
+          $_SESSION['id'] = $usuario['id'];
+          $_SESSION['email'] = $usuario['email'];
+          header("Location: dashboard.php");
+        } else {
+          echo "<p>Usuário ou senha incorretos</p>";
+        }
+      }
+    
+    ?>
+
+    <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
       <label for="email">Digite seu email</label>
       <input type="text" name="email" placeholder="Email" required>
       <label for="senha">Digite sua senha</label>

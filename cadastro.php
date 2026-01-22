@@ -1,3 +1,13 @@
+<?php 
+session_start();
+require_once("config/db.php");
+
+if(isset($_SESSION['id'])){
+  header("Location: dashboard.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
