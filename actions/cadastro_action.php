@@ -4,6 +4,8 @@ require_once "../config/db.php";
 $email = $_POST["email"] ?? null;
 $senha = $_POST["senha"] ?? null;
 $nome = $_POST["nome"] ?? null;
+$telefone = $_POST["telefone"] ?? null;
+$endereco = $_POST["endereco"] ?? null;
 
 if(isset($email) || isset($senha)){
 
@@ -11,12 +13,14 @@ if(isset($email) || isset($senha)){
 
     $senha_c = password_hash($senha, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO contas ( titular, email, senha) VALUES ( :titular, :email, :senha)";
+    $sql = "INSERT INTO contas ( titular, email, senha, telefone, endereco) VALUES ( :titular, :email, :senha, :telefone, :endereco )";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       ":titular" => $nome,
       ":email" => $email,
-      ":senha" => $senha_c
+      ":senha" => $senha_c,
+      ":telefone" => $telefone,
+      ":endereco" => $endereco
     ]);
 
     echo "Cadastro realizado com sucesso!";

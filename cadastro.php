@@ -36,10 +36,14 @@ if(isset($_SESSION['id'])){
     
     <main>
       <form action="actions/cadastro_action.php" method="post">
-        <label for="nome">Digite seu nome</label>
+        <label for="nome">Digite seu nome:</label>
         <input type="text" name="nome" placeholder="Nome" required>
-        <label for="email">Digite seu email</label>
+        <label for="email">Digite seu email:</label>
         <input type="text" name="email" placeholder="Email" required>
+        <label for="telefone">Digite seu telefone:</label>
+        <input type="text" name="telefone" placeholder="Ex: (99) 99999-9999" required>
+        <label for="endereco">Digite seu endereço:</label>
+        <input type="text" name="endereco" placeholder="Ex: Rua das Flores, 123" required>
         <label for="senha">Digite sua senha</label>
         <input type="password" name="senha" placeholder="Senha" required minlength="8">
         <button type="submit">Cadastrar</button>
