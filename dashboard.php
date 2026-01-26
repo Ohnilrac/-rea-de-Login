@@ -6,6 +6,21 @@ if(!isset($_SESSION['id'])){
   header("Location: index.php");
 }
 
+
+$sql = "SELECT * FROM contas WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+  ':id' => $_SESSION['id']
+]);
+
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$titular = $usuario['titular'];
+$conta = $usuario['conta'];
+$telefone = $usuario['telefone'];
+$endereco = $usuario['endereco'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +49,8 @@ if(!isset($_SESSION['id'])){
     
     <div class="content">
       <i class="fa-solid fa-circle-user"></i>
-      <h1><?= $_SESSION['nome'] ?></h1>
-      <p>Conta: <?= $_SESSION['conta'] ?></p>
+      <h1><?= $titular ?></h1>
+      <p>Conta: <?= $conta ?></p>
     </div>
     
     <main>
@@ -51,14 +66,14 @@ if(!isset($_SESSION['id'])){
         <div class="info">
           <i class="fa-solid fa-phone"></i>
           <div>
-            <p><?= $_SESSION['telefone'] ?></p>
+            <p><?= $telefone ?></p>
             <p>Número de telefone</p>
           </div>
         </div>
         <div class="info">
           <i class="fa-solid fa-location-dot"></i>
           <div>
-            <p><?= $_SESSION['endereco'] ?></p>
+            <p><?= $endereco ?></p>
             <p>Localização</p>
           </div>
       </div>
