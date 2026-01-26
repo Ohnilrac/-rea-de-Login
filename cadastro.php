@@ -44,8 +44,10 @@ if(isset($_SESSION['id'])){
         <input type="text" name="telefone" placeholder="Ex: (99) 99999-9999" required>
         <label for="endereco">Digite seu endereço:</label>
         <input type="text" name="endereco" placeholder="Ex: Rua das Flores, 123" required>
-        <label for="senha">Digite sua senha</label>
+        <label for="senha">Digite sua senha:</label>
         <input type="password" name="senha" placeholder="Senha" required minlength="8">
+        <label for="conta">Digite sua conta:</label>
+        <input type="number" name="conta" placeholder="Ex: 1234-5" required>
         <button type="submit">Cadastrar</button>
       </form>
     </main>

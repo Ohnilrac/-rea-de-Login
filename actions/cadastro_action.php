@@ -6,6 +6,7 @@ $senha = $_POST["senha"] ?? null;
 $nome = $_POST["nome"] ?? null;
 $telefone = $_POST["telefone"] ?? null;
 $endereco = $_POST["endereco"] ?? null;
+$conta = $_POST["conta"] ?? null;
 
 if(isset($email) || isset($senha)){
 
@@ -13,14 +14,15 @@ if(isset($email) || isset($senha)){
 
     $senha_c = password_hash($senha, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO contas ( titular, email, senha, telefone, endereco) VALUES ( :titular, :email, :senha, :telefone, :endereco )";
+    $sql = "INSERT INTO contas ( titular, email, senha, telefone, endereco, conta) VALUES ( :titular, :email, :senha, :telefone, :endereco, :conta)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       ":titular" => $nome,
       ":email" => $email,
       ":senha" => $senha_c,
       ":telefone" => $telefone,
-      ":endereco" => $endereco
+      ":endereco" => $endereco,
+      ":conta" => $conta
     ]);
 
     echo "Cadastro realizado com sucesso!";
