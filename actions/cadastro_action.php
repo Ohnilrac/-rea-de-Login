@@ -25,7 +25,8 @@ if(isset($email) || isset($senha)){
       ":conta" => $conta
     ]);
 
-    echo "Cadastro realizado com sucesso!";
+    header("Location: ../dashboard.php");
+    exit();
 
   } catch(PDOException $e){
     echo "Erro ao conectar ao banco de dados: " . $e->getMessage();

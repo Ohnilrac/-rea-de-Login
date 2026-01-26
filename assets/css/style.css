@@ -35,13 +35,24 @@ body {
 }
 
 header {
-  width: 50%;
+  width: 90%;
 }
 
 header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+header nav.edit {
+  display: flex;
+  align-items: center;
+}
+
+header nav a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #135bec;
 }
 
 header nav i:hover {
